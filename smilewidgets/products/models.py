@@ -6,7 +6,7 @@ class Product(models.Model):
     code = models.CharField(max_length=10, help_text='Internal facing reference to product')
 
     def __str__(self):
-        return '{} - {}'.format(self.name, self.code)
+        return '{} - {}'.format(self.name)
 
 
 class GiftCard(models.Model):
@@ -16,7 +16,7 @@ class GiftCard(models.Model):
     date_end = models.DateField(blank=True, null=True)
 
     def __str__(self):
-        return '{} - {}'.format(self.code, self.formatted_amount)
+        return '{} - ${} discount'.format(self.code, self.formatted_amount)
 
     @property
     def formatted_amount(self):
