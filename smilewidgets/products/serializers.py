@@ -4,7 +4,7 @@ from .models import Product, GiftCard, ProductPrice
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('name', 'code')
+        fields = ('id', 'name', 'code')
 
 
 class GiftCardSerializer(serializers.ModelSerializer):
@@ -13,6 +13,9 @@ class GiftCardSerializer(serializers.ModelSerializer):
         fields = ('__all__')
 
 class ProductPriceSerializer(serializers.ModelSerializer):
+    name = serializers.ReadOnlyField(source='product')
+
     class Meta:
         model = ProductPrice
-        fields = ('__all__')
+        read_only_fields = ('id', 'name')
+        fields = ('id', 'name', 'title', 'price', 'date_start', 'date_end')

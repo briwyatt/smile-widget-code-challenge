@@ -1,6 +1,7 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
+
 urlpatterns = [
-    url('get-price', views.get_price, name="get-price"),
+    path('get-price', views.get_price, name='get_price')
 ]

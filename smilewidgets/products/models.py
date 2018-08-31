@@ -6,7 +6,7 @@ class Product(models.Model):
     code = models.CharField(max_length=10, help_text='Internal facing reference to product')
 
     def __str__(self):
-        return '{} - {}'.format(self.name)
+        return '{} - {}'.format(self.name, self.code)
 
 
 class GiftCard(models.Model):
@@ -16,12 +16,11 @@ class GiftCard(models.Model):
     date_end = models.DateField(blank=True, null=True)
 
     def __str__(self):
-        return '{} - ${} discount'.format(self.code, self.formatted_amount)
+        return '{} - {}'.format(self.code, self.formatted_amount)
 
     @property
     def formatted_amount(self):
         return '${0:.2f}'.format(self.amount / 100)
-
 
 class ProductPrice(models.Model):
     title = models.CharField(max_length=50, help_text='Description of this pricing schedule for product')
@@ -31,8 +30,7 @@ class ProductPrice(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} - {}: {}'.format(self.title, self.product.name, self.formatted_price)
-
+        return '{} - {}'.format(self.title, self.formatted_price)
 
     @property
     def formatted_price(self):
